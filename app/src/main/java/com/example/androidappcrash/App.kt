@@ -10,7 +10,9 @@ import backtraceio.library.models.BacktraceExceptionHandler
 import backtraceio.library.models.BacktraceMetricsSettings
 import backtraceio.library.models.database.BacktraceDatabaseSettings
 
-
+/**
+ * The Application class initializes the backtraceClient and sets it up
+ */
 class App : Application() {
 
     lateinit var backtraceClient: BacktraceClient
@@ -18,10 +20,11 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
 
-
+        // The uri endpoint, change the strings in strings.xml with your universe and token
         val uri = "https://submit.backtrace.io/${getString(R.string.backtrace_universe)}/${getString(R.string.backtrace_token)}/json"
         val credentials = BacktraceCredentials(uri)
 
+        // Local db setup, required for native error reporting
         val dbPath = filesDir.absolutePath + "/backtrace"
         val settings = BacktraceDatabaseSettings(dbPath)
         settings.maxRecordCount = 100
@@ -33,10 +36,13 @@ class App : Application() {
         val database = BacktraceDatabase(this, settings)
         backtraceClient = BacktraceClient(this, credentials, database)
 
+        // Enable native crash reporting automatically sets up signal handler and report crash to server
         database.setupNativeIntegration(backtraceClient, credentials)
         BacktraceExceptionHandler.enable(backtraceClient)
         backtraceClient.enableNativeIntegration()
         backtraceClient.metrics.enable(BacktraceMetricsSettings(credentials))
+
+        // Enable breadcrumbs
         backtraceClient.enableBreadcrumbs(this)
     }
 }

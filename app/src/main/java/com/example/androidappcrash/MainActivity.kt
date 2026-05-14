@@ -11,6 +11,10 @@ import com.example.androidappcrash.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
+    /**
+     * Reference to the application class
+     */
     private lateinit var app: App
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.sampleText.text = stringFromJNI()
+        binding.sampleText.text = stringFromJNI() // Sample JNI setup test
 
         binding.outOfBound.setOnClickListener {
             app.backtraceClient.addBreadcrumb("User clicked the outOfBound crash button", BacktraceBreadcrumbType.LOG)
@@ -41,6 +45,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Sample function to test backtrace error reporting using kotlin
+     * [msg] The sample error message that will be sent along the stacktrace to the server
+     */
     fun testKotlinCrash(msg: String) {
         try {
             throw Exception("Testing, crash from kotlin: $msg")
@@ -57,14 +65,20 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Sample function to test JNI working
+     */
     external fun stringFromJNI(): String
 
+    /**
+     * Native function that triggers crashes based on the [type] sent
+     */
     external fun doCrash(type: Int)
 
     companion object {
         // Used to load the 'androidappcrash' library on application startup.
         init {
-            System.loadLibrary("androidappcrash")
+            System.loadLibrary("androidappcrash") // SO library containing the native code
         }
     }
 }
