@@ -18,33 +18,40 @@
             android:layout_height="wrap_content"
             android:text="Hello World!"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/native_crash"/>
+
         <Button
             android:id="@+id/out_of_bound"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
             android:text="@string/out_of_bound"/>
-
 
         <Button
             android:id="@+id/out_of_memory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
             android:text="@string/out_of_memory"/>
 
         <Button
             android:id="@+id/nullptr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
             android:text="@string/null_ptr_crash"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/kotlin_crash"/>
 
         <Button
             android:id="@+id/kotlin_crash"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
             android:text="@string/kotlin_crash"/>
 
     </LinearLayout>

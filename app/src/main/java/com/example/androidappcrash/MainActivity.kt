@@ -22,17 +22,17 @@ class MainActivity : AppCompatActivity() {
         binding.sampleText.text = stringFromJNI()
 
         binding.outOfBound.setOnClickListener {
-            app.backtraceClient.addBreadcrumb("User clicked the crash button", BacktraceBreadcrumbType.LOG)
+            app.backtraceClient.addBreadcrumb("User clicked the outOfBound crash button", BacktraceBreadcrumbType.LOG)
             doCrash(1)
         }
 
         binding.outOfMemory.setOnClickListener {
-            app.backtraceClient.addBreadcrumb("User clicked the crash button", BacktraceBreadcrumbType.LOG)
+            app.backtraceClient.addBreadcrumb("User clicked the outOfMemory crash button", BacktraceBreadcrumbType.LOG)
             doCrash(2)
         }
 
         binding.nullptr.setOnClickListener {
-            app.backtraceClient.addBreadcrumb("User clicked the crash button", BacktraceBreadcrumbType.LOG)
+            app.backtraceClient.addBreadcrumb("User clicked the nullptr crash button", BacktraceBreadcrumbType.LOG)
             doCrash(3)
         }
 

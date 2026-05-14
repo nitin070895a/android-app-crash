@@ -2,6 +2,7 @@
     <string name="backtrace_universe">nitinkhurana</string>
     <string name="backtrace_token">ce6cdc1b122528a5986ae888bc26fa59e0047c895a57073570f15d2f35ccc168</string>
     <string name="app_name">AndroidAppCrash</string>
+    <string name="native_crash">Native Crash</string>
     <string name="out_of_bound">Out of bound</string>
     <string name="out_of_memory">Out of memory</string>
     <string name="null_ptr_crash">Null pointer dereference</string>

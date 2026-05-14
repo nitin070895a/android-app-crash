@@ -18,9 +18,9 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        val credentials = BacktraceCredentials(
-            "https://submit.backtrace.io/${R.string.backtrace_universe}/${R.string.backtrace_token}/json"
-        )
+
+        val uri = "https://submit.backtrace.io/${getString(R.string.backtrace_universe)}/${getString(R.string.backtrace_token)}/json"
+        val credentials = BacktraceCredentials(uri)
 
         val dbPath = filesDir.absolutePath + "/backtrace"
         val settings = BacktraceDatabaseSettings(dbPath)
