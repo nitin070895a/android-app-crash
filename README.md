@@ -74,3 +74,6 @@ These crashes are generated from the C++ layer and automatically uploaded to Bac
 ### Backtrace Dashboard
 
 After triggering a crash, reports can be viewed in your Backtrace project dashboard.
+
+### Note
+- Debug symbols can be uploaded to the server so that the crash becomes meaningful and easier to debug
