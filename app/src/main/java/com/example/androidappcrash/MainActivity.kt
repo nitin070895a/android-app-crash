@@ -3,32 +3,36 @@ package com.example.androidappcrash
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import backtraceio.library.enums.BacktraceBreadcrumbType
 import backtraceio.library.models.json.BacktraceReport
 import backtraceio.library.models.types.BacktraceResultStatus
 import com.example.androidappcrash.databinding.ActivityMainBinding
 
-// Token ce6cdc1b122528a5986ae888bc26fa59e0047c895a57073570f15d2f35ccc168
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var app: App
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        app = applicationContext as App
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         binding.sampleText.text = stringFromJNI()
 
         binding.outOfBound.setOnClickListener {
+            app.backtraceClient.addBreadcrumb("User clicked the crash button", BacktraceBreadcrumbType.LOG)
             doCrash(1)
         }
 
         binding.outOfMemory.setOnClickListener {
+            app.backtraceClient.addBreadcrumb("User clicked the crash button", BacktraceBreadcrumbType.LOG)
             doCrash(2)
         }
 
         binding.nullptr.setOnClickListener {
+            app.backtraceClient.addBreadcrumb("User clicked the crash button", BacktraceBreadcrumbType.LOG)
             doCrash(3)
         }
 
@@ -42,7 +46,6 @@ class MainActivity : AppCompatActivity() {
             throw Exception("Testing, crash from kotlin: $msg")
         }
         catch (e: Exception) {
-            val app = applicationContext as App
             app.backtraceClient.send(BacktraceReport(e)) { result ->
 
                 if (result.status == BacktraceResultStatus.Ok) {
@@ -54,10 +57,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    /**
-     * A native method that is implemented by th₹e 'androidappcrash' native library,
-     * which is packaged with this application.
-     */
     external fun stringFromJNI(): String
 
     external fun doCrash(type: Int)

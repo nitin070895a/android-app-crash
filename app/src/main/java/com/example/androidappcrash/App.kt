@@ -19,7 +19,7 @@ class App : Application() {
         super.onCreate()
 
         val credentials = BacktraceCredentials(
-            "https://submit.backtrace.io/nitinkhurana/ce6cdc1b122528a5986ae888bc26fa59e0047c895a57073570f15d2f35ccc168/json"
+            "https://submit.backtrace.io/${R.string.backtrace_universe}/${R.string.backtrace_token}/json"
         )
 
         val dbPath = filesDir.absolutePath + "/backtrace"
@@ -37,5 +37,6 @@ class App : Application() {
         BacktraceExceptionHandler.enable(backtraceClient)
         backtraceClient.enableNativeIntegration()
         backtraceClient.metrics.enable(BacktraceMetricsSettings(credentials))
+        backtraceClient.enableBreadcrumbs(this)
     }
 }
