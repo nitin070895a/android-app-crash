@@ -11,13 +11,13 @@ void outOfBound() {
 void outOfMemory() {
     printf("outOfMemory crash");
     uint64_t* faultyAddress = (uint64_t*) 0x414141414141;
-    *faultyAddress = 1111;
+    *faultyAddress = 1111; // This will crash as writing at a faulty address
 }
 
 void nullPointerDereference() {
     printf("nullPointerDereference crash");
     int* ptr = nullptr;
-    *ptr = 1;
+    *ptr = 1; // This will crash as dereferencing a null pointer
 }
 
 extern "C" JNIEXPORT void JNICALL

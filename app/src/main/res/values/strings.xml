@@ -3,4 +3,5 @@
     <string name="out_of_bound">Out of bound</string>
     <string name="out_of_memory">Out of memory</string>
     <string name="null_ptr_crash">Null pointer dereference</string>
+    <string name="kotlin_crash">Kotlin crash</string>
 </resources>
